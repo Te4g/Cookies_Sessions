@@ -1,4 +1,10 @@
-<?php require 'inc/head.php'; ?>
+<?php
+require_once 'inc/head.php';
+if(isset($_POST['loginname']) && ($_POST['loginname'] != "")){
+$_SESSION['user'] = $_POST['loginname'];
+header('location:index.php');}
+
+?>
 <div class="container" style="margin-top:40px">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -7,7 +13,7 @@
                     <strong> Sign in to continue</strong>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="#" method="POST">
+                    <form role="form" action="" method="POST">
                         <fieldset>
                             <div class="row">
                                 <div class="center-block">
@@ -42,4 +48,7 @@
         </div>
     </div>
 </div>
-<?php require 'inc/foot.php'; ?>
+
+<?php
+require 'inc/foot.php';
+?>

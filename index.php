@@ -1,5 +1,18 @@
-<?php require 'inc/data/products.php'; ?>
-<?php require 'inc/head.php'; ?>
+<?php require_once 'inc/data/products.php'; ?>
+<?php require_once 'inc/head.php'; ?>
+
+<?php
+if (!isset($_SESSION['user'])) {
+    header('location:login.php');
+    exit();
+}
+
+if (isset($_GET['add_to_cart'])) {
+    setcookie('cart', $_GET['add_to_cart'] . ',' . $_COOKIE['cart']);
+};
+?>
+
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>

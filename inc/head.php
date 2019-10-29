@@ -1,3 +1,8 @@
+<?php session_start();
+if(isset($_COOKIE['cart'])){
+$str = $_COOKIE['cart'];
+$nbCart = count(explode(',',$str));};
+;?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,20 +39,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(isset($_SESSION['user'])):?>
                     <li><a href="#">Chocolates chips</a></li>
                     <li><a href="#">Nuts</a></li>
                     <li><a href="#">Gluten full</a></li>
-                    <li>
-                        <a href="/cart.php" class="btn btn-warning navbar-btn">
-                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                            Cart
-                        </a>
-                    </li>
+                    <li><a href="/cart.php" class="btn btn-warning navbar-btn">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>Cart<span style="color:red"><?php if(isset($_COOKIE['cart'])){?><?='('.$nbCart.')';}?></span></a></li>
+                    <li><a href="../logout.php" class="btn btn-info">Logout</a></li><?php else:?><li><a href="../login.php" class="btn btn-info">Login</a></li><?php endif; ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+        <strong>Hello <?php if(isset($_SESSION['user'])){echo $_SESSION['user'];}?> !</strong>
     </div>
 </header>
